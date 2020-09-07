@@ -54,7 +54,6 @@
       .city {
         color: $color-primary;
         font-size: $font-size-xxxl;
-        margin-bottom: 15px;
         font-weight: $font-weight-dark-bold;
       }
 
@@ -63,10 +62,15 @@
         background-position: center;
         width: 200px;
         height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: bold;
       }
 
       .temp {
-        @include flexCenter(row);
+        @include flexCenter(row,center);
         width: 100%;
 
       &__item {

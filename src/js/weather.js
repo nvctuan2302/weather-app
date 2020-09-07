@@ -11,10 +11,11 @@ const api = {
 }
 let now = new Date()
 
-const error = err => console.warn(`ERROR(${err.code}): ${err.message}`);
 
-const success = pos => {
-  fetch(`${api.baseUrl}weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&units=metric&appid=${api.key}`)
+const success = position => {
+  const {latitude, longitude} = position.coords
+
+  fetch(`${api.baseUrl}weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${api.key}`)
   .then(respons => respons.json())
   .then(displayWeather)
   .catch(error)
@@ -28,14 +29,18 @@ const getResults = query => {
 }
 
 const displayWeather =  data => {
+  const {temp_min, temp_max, temp} = data.main
+
   nameCity.innerText = `${data.name} ,${data.sys.country}`
   date.innerText = now.toDateString()
   icon.innerHTML = `<div class="icon js-icon" style="background-image: url('http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png');"></div>`
-  tempMin.innerText = data.main.temp_min
-  tempMid.innerText = data.main.temp
-  tempMax.innerText = data.main.temp_max
+//   tempMin.innerText = temp_min
+  tempMid.innerHTML = data.main.temp
+//   tempMax.innerText = temp_max
   console.log(data)
 }
+
+const error = err => console.warn(`ERROR(${err.code}): ${err.message}`);
 
 export const weather = _=> {
       navigator.geolocation.getCurrentPosition(success)
