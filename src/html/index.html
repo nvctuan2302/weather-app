@@ -1,0 +1,27 @@
+{% extends 'layout/_main.html' %}
+{% block content %}
+<section class="section section--xl">
+  <div class="container">
+    <h1 class="headline headline--main">Weather in</h1>
+    <!-- <p class="headline headline--sub">Double-click to edit a temp</p> -->
+    <div class="todo">
+      <div class="todo-header">
+        <input type="text" class="todo-header__new js-input-search" placeholder="What city ????">
+      </div>
+     
+      <div class="todo-footer  js-footer">
+        <div class="city js-city"></div>
+        <div class="date js-date"></div>
+        <div class="icon js-icon"></div>
+        <div class="temp js-temp"></div>
+        <div class="temp">
+          <div class="temp__item js-temp-min"></div>
+          <div class="temp__item js-temp-mid"></div>
+          <div class="temp__item js-temp-max"></div>
+        </div>
+       </div>
+  </div>
+</section>
+
+
+{% endblock %}
