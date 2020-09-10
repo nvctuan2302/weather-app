@@ -2,62 +2,47 @@ const searchBox = document.querySelector('.js-input-search')
 const nameCity = document.querySelector('.js-city')
 const date = document.querySelector('.js-date')
 const iconWeather = document.querySelector('.js-icon')
-const tempMin = document.querySelector('.js-temp-min')
 const tempMid = document.querySelector('.js-temp-mid')
-const tempMax = document.querySelector('.js-temp-max')
 const loader = document.querySelector('.js-loader')
-const contentMain = document.querySelector('.js-weather-main')
+
 const api = {
   key: '2f887e5d1ea0b70b225c193184f78cd2',
   baseUrl: 'https://api.openweathermap.org/data/2.5/'
 }
-let now = new Date()
+let now = new Date()}
 
-function status(response) {
-  if (response.status >= 200 && response.status < 300) {
+const status = response => {
+  if (response.status >= 200 && response.status < 300)
     return Promise.resolve(response)
-  }
-}
-
-const apiFetch = _ => {
-
+  else
+    return Promise.reject(new Error(response.statusText))
 }
 
 const success = position => {
-  setInterval(_ => {
-    const { latitude, longitude } = position.coords
-
-    fetch(`${api.baseUrl}weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${api.key}`)
-      .then(status)
-      .then(response => response.json())
-      .then(displayWeather)
-      .catch(error)
-  }, 2000);
+  const { latitude, longitude } = position.coords
+  fetch(`${api.baseUrl}weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${api.key}`)
+    .then(status)
+    .then(response => response.json())
+    .then(displayWeather)
+    .catch(error)
 }
 
 const getResults = query => {
-  setInterval(_ => {
-    fetch(`${api.baseUrl}weather?q=${query}&units=metric&appid=${api.key}`)
-      .then(respons => respons.json())
-      .then(displayWeather)
-      .catch(error)
-  }, 2000);
+  fetch(`${api.baseUrl}weather?q=${query}&units=metric&appid=${api.key}`)
+    .then(status)
+    .then(respons => respons.json())
+    .then(displayWeather)
+    .catch(error)
 }
 
 const displayWeather = data => {
-  const { temp_min, temp_max, temp } = data.main
-  const { description, id, main, icon } = data.weather[0]
-
-  contentMain.classList.add('is-active')
-  loader.style.display = 'none'
+  const { main, icon } = data.weather[0]
 
   nameCity.innerText = `${data.name} ,${data.sys.country}`
   date.innerText = now.toDateString()
   iconWeather.style.backgroundImage = `url('http://openweathermap.org/img/wn/${icon}@4x.png')`
-  tempMid.innerHTML = temp
-  //   tempMin.innerText = temp_min
-  //   tempMax.innerText = temp_max
-  displaybackgroundImage(data.weather[0].main)
+  tempMid.innerHTML = data.main.temp
+  displaybackgroundImage(main)
   console.log(data)
 }
 
@@ -87,14 +72,17 @@ const displaybackgroundImage = data => {
   }
 }
 
-const error = err => console.warn(`ERROR(${err.code}): ${err.message}`);
+const error = err => alert(`City ${err.message}`);
 
 export const weather = _ => {
   navigator.geolocation.getCurrentPosition(success)
 
   searchBox.addEventListener('keypress', e => {
     if (e.keyCode === 13) {
-      getResults(e.target.value)
+        getResults(e.target.value)
+
+    
+
     }
   })
 
