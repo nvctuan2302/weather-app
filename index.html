@@ -5,46 +5,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Todos List</title>
+  <title>1PAC Weather App</title>
+  <link rel="shortcut icon" href="https://1pac.vn/favicons/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="css/application.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
 </head>
 
-<body>
+<body style="background-image: url('https://images.pexels.com/photos/5412/water-blue-ocean.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
   
-<section class="section section--xl">
+<section class="section-balance">
   <div class="container">
-    <h1 class="headline headline--main">Todo List</h1>
-    <p class="headline headline--sub">Double-click to edit a todo</p>
-    <div class="todo">
-      <div class="todo-header">
-        <input type="text" class="todo-header__new js-todo-new" placeholder="What needs to be done?">
+    <div class="weather">
+      <div class="weather-header">
+        <input type="text" class="weather-header__new js-input-search" placeholder="What city ????">
       </div>
-      <ul class="todo-list js-content">
-        
-      </ul>
-      <div class="todo-footer  js-footer">
-        <div><span class="js-count-todos u-mr-10">0</span>Item left</div>
-        <div class="todo-action">
-          <label class="todo-action__item js-todo-action-item">
-            <input class="js-all" value="all" type="radio" name="toggle" checked>
-            <span class="button button--round">All</span>
-          </label>
-          <label class="todo-action__item js-todo-action-item">
-            <input class="js-active" value="active" type="radio" name="toggle">
-            <span class="button button--round">Active</span>
-          </label>
-          <label class="todo-action__item js-todo-action-item">
-            <input class="js-completed" value="completed" type="radio" name="toggle">
-            <span class="button button--round">Completed</span>
-          </label>
+      <div class="weather-wrap  js-footer">
+        <div class="loader js-loader"></div>
+        <div class="weather-main js-weather-main">
+          <div class="u-flex-center">
+            <div class="weather-main__city js-city">???, ??</div> 
+            <div class="weather-main__redo js-weather-main__redo">
+              <i class="u-ml-10 fas fa-redo-alt"></i>
+            </div>
+          </div>
+          <div class="weather-main__date js-date">?? ??? ?? ????</div>
+          <div class="weather-main__icon js-icon"
+            style="background-image: url('http://openweathermap.org/img/wn/03d@4x.png');"></div>
+          <div class="temp js-temp"></div>
+          <div class="temp">
+            <div class="temp__item js-temp-mid">??? </div>
+          </div>
         </div>
-        <div class="button js-clear-todos">Clear completed</div>
       </div>
     </div>
   </div>
 </section>
+
+
 
   <script src="js/main.js"></script>
 </body>
