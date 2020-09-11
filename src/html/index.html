@@ -7,17 +7,20 @@
         <input type="text" class="weather-header__new js-input-search" placeholder="What city ????">
       </div>
       <div class="weather-wrap  js-footer">
-        <div hidden class="loader js-loader"></div>
+        <div class="loader js-loader"></div>
         <div class="weather-main js-weather-main">
-          <div class="weather-main__city js-city">???, ??</div>
-          <div class="weather-main__date js-date"></div>
+          <div class="u-flex-center">
+            <div class="weather-main__city js-city">???, ??</div> 
+            <div class="weather-main__redo js-weather-main__redo">
+              <i class="u-ml-10 fas fa-redo-alt"></i>
+            </div>
+          </div>
+          <div class="weather-main__date js-date">?? ??? ?? ????</div>
           <div class="weather-main__icon js-icon"
             style="background-image: url('http://openweathermap.org/img/wn/03d@4x.png');"></div>
           <div class="temp js-temp"></div>
           <div class="temp">
-            <!-- <div class="temp__item js-temp-min"></div> -->
             <div class="temp__item js-temp-mid">??? </div>
-            <!-- <div class="temp__item js-temp-max"></div> -->
           </div>
         </div>
       </div>
