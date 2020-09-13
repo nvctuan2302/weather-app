@@ -12,6 +12,8 @@ const api = {
 }
 let now = new Date()
 
+const changeStateLoader = state => loader.hidden = state ? '' : 'false'
+
 const getCurrentPosition = position => {
   const { latitude, longitude } = position.coords
   fetchApi(`${api.baseUrl}weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${api.key}`)
@@ -22,7 +24,7 @@ const getResults = query => {
 }
 
 const fetchApi = url => {
-  loader.hidden = false
+  changeStateLoader(true)
   fetch(`${url}`)
     .then(status)
     .then(response => response.json())
@@ -31,11 +33,8 @@ const fetchApi = url => {
 }
 
 const status = response => {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
   if (response.status >= 200 && response.status < 300) {
-    loader.hidden = true
+    changeStateLoader(false)
     return Promise.resolve(response)
   }
 }
@@ -75,7 +74,7 @@ const displaybackgroundImage = data => {
 
 const error = err => {
   alert(`City not found`);
-  loader.hidden = true
+  changeStateLoader(false)
 }
 
 export const weather = _ => {
