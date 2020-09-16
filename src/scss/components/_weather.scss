@@ -1,6 +1,7 @@
 .weather {
   .weather-header {
     position: relative;
+
     &__new {
       position: relative;
       width: 100%;
@@ -19,26 +20,26 @@
 
   .weather-wrap {
     @include flexCenter(column, center, center);
-    font-size: 16px;
+    font-size: $font-size-lg;
     padding: 11px 35px 11px 35px;
     border: solid 1px $color-gainsboro;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2),
-      0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
-      position: relative;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px $color-snow, 0 9px 1px -3px rgba(0, 0, 0, 0.2),
+      0 16px 0 -6px $color-snow, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+    position: relative;
 
-      &:after {
-        content: '';
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #fff;
-        opacity: .4;
-        -webkit-backdrop-filter: saturate(360%) blur(160px);
-        backdrop-filter: saturate(360%) blur(160px);
-      }
+    &:after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $color-white;
+      opacity: 0.4;
+      -webkit-backdrop-filter: saturate(360%) blur(160px);
+      backdrop-filter: saturate(360%) blur(160px);
+    }
   }
 
   .weather-main {
@@ -50,34 +51,26 @@
       font-weight: $font-weight-dark-bold;
     }
 
-    &__icon {
+    &__icon-weather {
       background-repeat: no-repeat;
       background-position: center;
       width: 200px;
       height: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 30px;
-      font-weight: bold;
+      font-size: $font-size-xxl;
     }
 
-    &__redo { 
+    &__icon-redo {
       cursor: pointer;
       color: $color-black;
     }
 
-    .temp {
+    &__temp {
       @include flexCenter(row, center);
-      width: 100%;
-      color: black;
+      color: $color-black;
+      font-size: $font-size-xxxl;
 
-      &__item {
-        font-size: 50px;
-
-        &:after {
-          content: "\2103";
-        }
+      &:after {
+        content: "\2103";
       }
     }
   }

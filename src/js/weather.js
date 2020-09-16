@@ -1,16 +1,15 @@
 const searchBox = document.querySelector('.js-input-search')
-const nameCity = document.querySelector('.js-city')
-const date = document.querySelector('.js-date')
-const iconWeather = document.querySelector('.js-icon')
-const tempMid = document.querySelector('.js-temp-mid')
+const nameCity = document.querySelector('.js-weather-main__city')
+const date = document.querySelector('.js-weather-main__date')
+const iconWeather = document.querySelector('.js-icon-weather')
+const temp= document.querySelector('.js-weather-main__temp')
 const loader = document.querySelector('.js-loader')
-const refresh = document.querySelector('.js-weather-main__redo')
-
+const iconRedo = document.querySelector('.js-weather-main__icon-redo')
 const api = {
   key: '2f887e5d1ea0b70b225c193184f78cd2',
   baseUrl: 'https://api.openweathermap.org/data/2.5/'
 }
-let now = new Date()
+let currentDate = new Date()
 
 const changeStateLoader = state => loader.hidden = state ? '' : 'false'
 
@@ -27,7 +26,6 @@ const fetchApi = url => {
   changeStateLoader(true)
   fetch(`${url}`)
     .then(status)
-    .then(response => response.json())
     .then(displayWeather)
     .catch(error)
 }
@@ -35,18 +33,18 @@ const fetchApi = url => {
 const status = response => {
   if (response.status >= 200 && response.status < 300) {
     changeStateLoader(false)
-    return Promise.resolve(response)
+    return response.json()
   }
 }
 
 const displayWeather = data => {
   const { main, icon } = data.weather[0]
+
   nameCity.innerText = `${data.name},${data.sys.country}`
-  date.innerText = now.toDateString()
+  date.innerText = currentDate.toDateString()
   iconWeather.style.backgroundImage = `url('http://openweathermap.org/img/wn/${icon}@4x.png')`
-  tempMid.innerHTML = data.main.temp
+  temp.innerHTML = data.main.temp
   displaybackgroundImage(main)
-  console.log(data)
 }
 
 const displaybackgroundImage = data => {
@@ -73,7 +71,7 @@ const displaybackgroundImage = data => {
 }
 
 const error = err => {
-  alert(`City not found`);
+  alert("City not found")
   changeStateLoader(false)
 }
 
@@ -87,7 +85,7 @@ export const weather = _ => {
     }
   })
 
-  refresh.addEventListener('click', _ => {
+  iconRedo.addEventListener('click', _ => {
     getResults(nameCity.innerText)
   })
 }
